@@ -1,49 +1,50 @@
+package com.company;
+
 import java.util.ArrayList;
 
 public class Dreams{
     private boolean b_status;
     private String s_status;
     private String dream;
-    private int identUserForDream; 
-    Person pers;
-    
+    private int identUserForDream;
+    private String name;
+    private int length_dream = 0;
+
     public String get_sStatus(){
         return this.s_status;
     }
-    
+
     public boolean get_bStatus(){
         return this.b_status;
     }
-    
+
     public String get_sDream(){
         return this.dream;
     }
-    
-    public void displayDreams(Dreams dream){
-        
-        System.out.println(this.dream + "\t|\t\t\t" + this.s_status);
+
+    public void displayDreams(Dreams dream, int index){
+        String column1Format = "%-3.3s";
+        String column2Format = "%-40.40s";
+        String column3Format = "%30.30s";
+        String formatInfo = column1Format + "\t|\t" + column2Format + "\t|\t" + column3Format;
+
+        System.out.format(formatInfo, index+1, this.dream, this.s_status);
+        System.out.println();
     }
-    
-    public static void addToListDream(String dream, String s_status, ArrayList<Dreams> dreams){
-        Dreams dream7 = new Dreams(dream, s_status);
-        dreams.add(dream7);
+
+    public void addToListDream(String dream, String s_status, ArrayList<Dreams> dreams, String name){
+        Dreams add_new_dream = new Dreams(dream, s_status, name);
+        dreams.add(add_new_dream);
     }
-    
-    public static void createDreamList(ArrayList<Dreams> dreams){
-        Dreams dream1 = new Dreams("I want 10 cars", "Never come true");
-        dreams.add(dream1);
-        Dreams dream2 = new Dreams("I want a Filarmony", "Never come true");
-        dreams.add(dream2);
-        Dreams dream3 = new Dreams("I want a sixty five million dollars", "Come true");
-        dreams.add(dream3);
-        Dreams dream4 = new Dreams("I want a laptop", "Come true");
-        dreams.add(dream4);
-        Dreams dream5 = new Dreams("I want a main Kingdom in Britain", "Come true");
-        dreams.add(dream5);
+
+    public static void rmToListDream(ArrayList<Dreams> dreams, String index){
+        int i = Integer.parseInt(index) - 1;
+        dreams.remove(i);
     }
-    
-    Dreams(String dream, String s_status){
+
+    Dreams(String dream, String s_status,String name){
         this.dream = dream;
         this.s_status = s_status;
+        this.name = name;
     }
 }
